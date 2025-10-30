@@ -1,0 +1,28 @@
+<h2>Donated Persons (Staff)</h2>
+
+<!-- Form to mark a donation -->
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Donate</button>
+</form>
+
+<h3>All Donations</h3>
+<table border="1">
+    <tr>
+        <th>User</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Date</th>
+    </tr>
+    {% for donation in donations %}
+    <tr>
+        <td>{{ donation.user.username }}</td>
+        <td>{{ donation.name }}</td>
+        <td>{{ donation.email }}</td>
+        <td>{{ donation.phone }}</td>
+        <td>{{ donation.date }}</td>
+    </tr>
+    {% endfor %}
+</table>

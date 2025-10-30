@@ -1,0 +1,19 @@
+<h2>My Donations</h2>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Date</th>
+        <th>Marked By</th>
+    </tr>
+    {% for donation in donations %}
+    <tr>
+        <td>{{ donation.name }}</td>
+        <td>{{ donation.email }}</td>
+        <td>{{ donation.phone }}</td>
+        <td>{{ donation.date }}</td>
+        <td>{{ donation.staff.username }}</td>
+    </tr>
+    {% endfor %}
+</table>

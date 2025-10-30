@@ -1,0 +1,55 @@
+<h2>Registered Blood Donors</h2>
+<table border="1" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Region</th>
+            <th>Zip</th>
+            <th>Country</th>
+            <th>Occupation</th>
+            <th>Blood Type</th>
+            <th>Donated Before</th>
+            <th>Diseases</th>
+            <th>Allergies</th>
+            <th>Other Allergies</th>
+            <th>Positive Test</th>
+            <th>Cardiac</th>
+            <th>Bleeding</th>
+            <th>Medication</th>
+            <th>Eligibility</th>
+            <!-- <th>Date Registered</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for donor in donors %}
+        <tr>
+            <td>{{ donor.first_name }} {{ donor.last_name }}</td>
+            <td>{{ donor.dob }}</td>
+            <td>{{ donor.email }}</td>
+            <td>{{ donor.phone }}</td>
+            <td>{{ donor.address1 }} {{ donor.address2 }}</td>
+            <td>{{ donor.city }}</td>
+            <td>{{ donor.region }}</td>
+            <td>{{ donor.zip_code }}</td>
+            <td>{{ donor.country }}</td>
+            <td>{{ donor.occupation }}</td>
+            <td>{{ donor.blood_type }}</td>
+            <td>{{ donor.donated_before }}</td>
+            <td>{{ donor.diseases }}</td>
+            <td>{{ donor.allergies }}</td>
+            <td>{{ donor.other_allergies }}</td>
+            <td>{{ donor.positive_test }}</td>
+            <td>{{ donor.cardiac }}</td>
+            <td>{{ donor.bleeding }}</td>
+            <td>{{ donor.medication }}</td>
+            <td>{{ donor.eligibility }}</td>
+            <td>{{ donor.date_registered }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

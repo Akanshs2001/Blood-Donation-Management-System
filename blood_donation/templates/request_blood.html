@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Blood</title>
+</head>
+<body>
+
+
+    {% if messages %}
+  <div>
+    {% for message in messages %}
+      <p style="color: green; font-weight: bold;">{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+    <h2>Request Blood</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Request</button>
+    </form>
+    <a href="{% url 'user_dashboard' %}">⬅ Back to Dashboard</a>
+</body>
+</html>

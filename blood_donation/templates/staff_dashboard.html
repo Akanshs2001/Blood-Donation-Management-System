@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url("{% static 'images/back image.jpg' %}") no-repeat center center/cover;
+            height: 100vh;
+            color: rgb(250, 248, 248);
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: rgba(4, 0, 0, 0.6);
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: rgb(252, 251, 251);
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        .navbar ul li:hover a {
+            color: #ff4d4d;
+        }
+
+        /* Dropdown */
+        .navbar ul li .dropdown {
+            display: none;
+            position: absolute;
+            top: 35px;
+            left: 0;
+            background: rgba(0,0,0,0.85);
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        .navbar ul li:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        /* Center buttons */
+        .center-box {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: white;
+            background: #e60000;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #ff1a1a;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>Staff Dashboard</h2>
+        <ul>
+            <li>
+                <a href="#">About</a>
+                <div class="dropdown">
+                    <p>We connect donors with hospitals and patients.</p>
+                </div>
+            </li>
+            <li>
+                <a href="#">Services</a>
+                <div class="dropdown">
+                    <p>✔ Manage Blood Inventory</p>
+                    <p>✔ Approve Blood Requests</p>
+                    <p>✔ Organize Campaigns</p>
+                </div>
+            </li>
+            <li>
+                <a href="#">Contact Us</a>
+                <div class="dropdown">
+                    <p>Email: bloodbank@gmail.com</p>
+                    <p>Phone: +91 7736791949</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Center Buttons -->
+    <div class="center-box">
+        {% if user.is_authenticated %}
+            <h2>Welcome {{ user.username }} 👋</h2>
+        {% else %}
+            <h2>Welcome Guest 👋</h2>
+        {% endif %}
+        
+        <a href="{% url 'donor_list' %}" class="btn">Donor Details</a>
+        <a href="{% url 'announcements' %}" class="btn">Announcements</a>
+        <a href="{% url 'staff_blood_inventory' %}" class="btn">Blood Inventory</a>
+        <a href="{% url 'campaigns' %}" class="btn">Campaigns</a>
+        <a href="{% url 'manage_requests' %}" class="btn">Manage Requests</a>
+        <a href="{% url 'logout' %}" class="btn">Logout</a>
+    </div>
+
+</body>
+</html>

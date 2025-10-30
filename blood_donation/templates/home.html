@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation System</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url("{% static 'images/home_bg.jpg' %}") no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        .navbar ul li:hover a {
+            color: #ff4d4d;
+        }
+
+        /* Dropdown */
+        .navbar ul li .dropdown {
+            display: none;
+            position: absolute;
+            top: 35px;
+            left: 0;
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            border-radius: 5px;
+            width: 180px;
+        }
+
+        .navbar ul li:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        /* Center buttons */
+        .center-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: white;
+            background: #e60000;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #ff1a1a;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>Blood Donation System</h2>
+        <ul>
+            <li>
+                <a href="#">About</a>
+                <div class="dropdown">
+                    <p>We connect donors with hospitals and patients.</p>
+                </div>
+            </li>
+            <li>
+                <a href="#">Services</a>
+                <div class="dropdown">
+                    <p>✔ Blood Donation</p>
+                    <p>✔ Blood Requests</p>
+                    <p>✔ Campaigns</p>
+                </div>
+            </li>
+            <li>
+                <a href="#">Contact Us</a>
+                <div class="dropdown">
+                    <p>Email: bloodbank@gmail.com</p>
+                    <p>Phone: +91 7736791949</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Center Login & Register Buttons -->
+    <div class="center-box">
+        <a href="{% url 'login' %}" class="btn">Login</a>
+        <a href="{% url 'register' %}" class="btn">Register</a>
+    </div>
+
+</body>
+</html>

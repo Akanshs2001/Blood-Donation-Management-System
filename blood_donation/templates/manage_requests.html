@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Blood Requests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url("{% static 'images/manage.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 900px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            color: #ff4d4d;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        tr:hover {
+            background: #ffe6e6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .btn-approve {
+            background: #28a745;
+        }
+
+        .btn-approve:hover {
+            background: #218838;
+        }
+
+        .btn-reject {
+            background: #dc3545;
+        }
+
+        .btn-reject:hover {
+            background: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📩 Blood Requests</h2>
+
+        {% if requests %}
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>Blood Group</th>
+                    <th>Units</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                {% for req in requests %}
+                <tr>
+                    <td>{{ req.user.username }}</td>
+                    <td>{{ req.blood_type }}</td>
+                    <td>{{ req.units }}</td>
+                    <td>{{ req.status }}</td>
+                    <td>
+                        {% if req.status == "Pending" %}
+                            <a href="{% url 'approve_request' req.id %}" class="btn btn-approve">✅ Approve</a>
+                            <a href="{% url 'reject_request' req.id %}" class="btn btn-reject">❌ Reject</a>
+                        {% else %}
+                            {{ req.status }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No blood requests found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
